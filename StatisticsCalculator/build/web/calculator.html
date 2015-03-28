@@ -4,11 +4,22 @@
 
         <title>MODESTA CALCULATOR</title>
         <link rel="stylesheet" href="css/calculator.css">
+        <link rel="stylesheet" href="css/jquery.jqplot.css" />
 
     </head>
 
     <body>
-
+        <script src="http://mbostock.github.com/d3/d3.js?2.7.1"></script>
+        <script src="http://mbostock.github.com/d3/d3.csv.js?2.7.1"></script>
+        <script language="javascript" type="text/javascript" src="js/excanvas.js"></script>
+        <script language="javascript" type="text/javascript" src="js/jquery.min.js"></script>
+        <script language="javascript" type="text/javascript" src="js/raphael-min.js"></script>
+        <script language="javascript" type="text/javascript" src="js/jquery.jqplot.min.js"></script>
+        <script language="javascript" type="text/javascript" src="js/g.bar-min.js"></script>
+        <script language="javascript" type="text/javascript" src="js/g.dot-min.js"></script>
+        <script language="javascript" type="text/javascript" src="js/g.line-min.js"></script>
+        <script language="javascript" type="text/javascript" src="js/g.pie-min.js"></script>
+        <script language="javascript" type="text/javascript" src="js/g.raphael-min.js"></script>
 
         <div class="container">
 
@@ -66,10 +77,15 @@
                 <h2>Results<h2>
                         <input type="text" id="answer">
                         <div id="chart_div" style="width: 900px; height: 500px;"></div>
-                        </div>
 
 
                         </div>
+                        <div class="graphs">
+                            <h2> Visuals</h2>
+                            <p id="graphs">
+                            </p>
+                        </div>
+
 
                         <script>
 
@@ -81,6 +97,9 @@
                                 var b = $("#input2").val();
                                 var i, ans = 0;
                                 var array = [];
+                                var graphs = document.getElementById("graphs");
+
+
                                 for (i = 0; i < a.length; i++) {
 
                                     a[i] = parseInt(a[i], 10);
@@ -142,7 +161,7 @@
                                         $("#answer").val(ans);
                                         break;
                                     case 'Histogram' :
-                                        ans = drawHistogram(a);
+                                        drawHistogram(a);
                                         // idk;
                                         break;
                                     case 'Boxplot' :
@@ -158,8 +177,8 @@
                                         //idk;
                                         break;
                                     case 'Pie':
-                                        ans = drawPie(a);
-                                        //idk;
+                                        drawPie(a);
+                                        $("#graphs").val(r);
                                         break;
                                     case 'Bar':
                                         ans = drawBar(a);
@@ -238,7 +257,7 @@
                                 }
 
 
-                                //loop again and print only the highest modes
+                                //loop again
                                 for (i = 0; i < a.length; i++) {
                                     count = 0;
                                     for (j = 0; j < a.length; j++) {
@@ -249,21 +268,6 @@
                                     if (count === maxCount) {
                                         array[k] = a[i];
                                         k++;
-                                        /*
-                                         if (k === 0) {
-                                         array[k] = a[i];
-                                         //   array[k + 1] = count;
-                                         k ++;
-                                         } else {
-                                         if (a[k - 2] === a[i]) {
-                                         //       array[k - 1]++;
-                                         
-                                         } else {
-                                         k ++;
-                                         }
-                                         }
-                                         */
-
                                     }
                                 }
                                 var x = 0;
@@ -593,10 +597,32 @@
                                 return ans;
                             }
 
+                            var barsVisualization;
 
                             function drawHistogram(a) {
+                                var i = 0;
+                                var frequencycount = [];
+                                var temp = 0;
+                                var data = [];
+                                var count = 0;
+                                var k = 0;
 
+                                for (i = 0; i < a.length; i++) {
+                                    temp = a[i];
+                                    for (j = 0; j < a.length; j++) {
+                                        if (temp === a[j]) {
+                                            count++;
+                                            frequencycount[k] = count;
+                                            data[k] = temp;
+                                        }
+                                    }
+
+                                    k++;
+                                }
+
+                                System.out.println(k);
                             }
+
 
                             function drawBoxplot(a) {
 
@@ -611,7 +637,10 @@
                             }
 
                             function drawPie(a) {
-
+                                var div = document.getElementById('graphs');
+                                var r = Raphael(10, 50, 640, 480);
+                                r.piechart(320, 240, 100, [55, 20, 13, 32, 5, 1, 2]);
+                                div.innerHTML = div.innerHTML + r;
                             }
 
                             function drawBar(a) {
@@ -622,8 +651,9 @@
 
                             }
 
+                            function draw1(a) {
 
-
+                            }
 
 
 
