@@ -141,6 +141,34 @@
                                         ans = getDecile(a);
                                         $("#answer").val(ans);
                                         break;
+                                    case 'Histogram' :
+                                        ans = drawHistogram(a);
+                                        // idk;
+                                        break;
+                                    case 'Boxplot' :
+                                        ans = drawBoxPlot(a);
+                                        // idk;
+                                        break;
+                                    case 'Scatterplot':
+                                        ans = drawScatterplot(a);
+                                        //idk;
+                                        break;
+                                    case 'FDT':
+                                        ans = drawFDT(a);
+                                        //idk;
+                                        break;
+                                    case 'Pie':
+                                        ans = drawPie(a);
+                                        //idk;
+                                        break;
+                                    case 'Bar':
+                                        ans = drawBar(a);
+                                        //idk;
+                                        break;
+                                    case 'Line':
+                                        ans = drawLine(a);
+                                        //idk;
+                                        break;
                                 }
 
 
@@ -414,7 +442,7 @@
 
                                 ans = (below + (0.5 * samescore)) / a.length;
                                 //ans = below;
-                                return ans;
+                                return ans * 100;
                             }
 
                             function getQuartile(a) {
@@ -450,6 +478,7 @@
                                     second = second;
                                 }
                                 ans2 = a[second - 1];
+
                                 var third = a.length * 75 / 100;
                                 if ((third + .5) - third >= .5) {
                                     third = parseInt(third) + 1;
@@ -566,6 +595,30 @@
 
 
                             function drawHistogram(a) {
+
+                            }
+
+                            function drawBoxplot(a) {
+
+                            }
+
+                            function drawScatterplot(a) {
+
+                            }
+
+                            function drawFDT(a) {
+
+                            }
+
+                            function drawPie(a) {
+
+                            }
+
+                            function drawBar(a) {
+
+                            }
+
+                            function drawLine(a) {
 
                             }
 
