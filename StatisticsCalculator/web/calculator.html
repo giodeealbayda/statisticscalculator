@@ -31,7 +31,7 @@
 			<input type="radio" class="radio_button" name="option" value="SD">Standard Deviation</input><br>
 			<input type="radio" class="radio_button" name="option" value="Variance">Variance</input><br>
 			<input type="radio" class="radio_button" name="option" value="Range">Range</input><br>
-			<input type="radio" class="radio_button" name="option" value="IQR">Inter-QuartileRange</input><br>
+			<input type="radio" class="radio_button" name="option" value="IQR">Inter-Quartile Range</input><br>
 			<input type="radio" class="radio_button" name="option" value="COV">Coefficient of Variation</input>
 
 
@@ -264,13 +264,24 @@ function getIQR(a){
 
 	for(i=0;i<(a.length -1);i++){
 		for(j=0; j<(a.length-i); j++){
-			if(a[j] > a[j+1]){
+			if(a[j] > a[j+1]){ // sort
 			temp = a[j];
 			a[j] = a[j+1];
 			a[j+1] = temp;
 			}
 		}
 	}
+        
+        // get third quartile
+        var third = 0.75*(a.length+1);
+        
+        //get first quartile
+        var first = 0.25*(a.length+1);
+        
+        ans = third-first;
+        
+        return ans;
+        
 
 
 }
