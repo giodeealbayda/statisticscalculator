@@ -1,26 +1,39 @@
 .container{
-
+    position: absolute;
     width:100%;
-
 }
 
 .box{
-
-    width:30%;
-    float:left;
+    position: absolute;
+    margin-top: 10px;
+    width: 320px;
+    padding: 10px;
+    border: 5px solid gray;
 
 }
 
 .box2{
+    position: absolute; 
+    margin-top: 10px;
+    margin-left: 360px;
+    width: 400px;
+    padding: 10px;
+    border: 5px solid gray;
+}
 
-    width:70%;
-    float:left;
-
+#chart_div{
+    
+    position: absolute;
+    margin-top: 50px;
+    width: 600px;
+    height: 600px;
+    padding: 10px;
+    border: 5px solid gray;
 }
 
 .inputbox{
 
-    width:70%;
+    width:30%;
     font-size:15px;
 
 }

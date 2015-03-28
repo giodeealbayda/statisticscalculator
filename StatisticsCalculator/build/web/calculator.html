@@ -9,17 +9,16 @@
     </head>
 
     <body>
-        <script src="http://mbostock.github.com/d3/d3.js?2.7.1"></script>
-        <script src="http://mbostock.github.com/d3/d3.csv.js?2.7.1"></script>
-        <script language="javascript" type="text/javascript" src="js/excanvas.js"></script>
-        <script language="javascript" type="text/javascript" src="js/jquery.min.js"></script>
-        <script language="javascript" type="text/javascript" src="js/raphael-min.js"></script>
-        <script language="javascript" type="text/javascript" src="js/jquery.jqplot.min.js"></script>
-        <script language="javascript" type="text/javascript" src="js/g.bar-min.js"></script>
-        <script language="javascript" type="text/javascript" src="js/g.dot-min.js"></script>
-        <script language="javascript" type="text/javascript" src="js/g.line-min.js"></script>
-        <script language="javascript" type="text/javascript" src="js/g.pie-min.js"></script>
-        <script language="javascript" type="text/javascript" src="js/g.raphael-min.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/raphael-min.js"></script>
+
+        <script src="js/g.raphael-min.js"></script>
+        <script src="js/g.bar-min.js"></script>
+        <script src="js/g.dot-min.js"></script>
+        <script src="js/g.line-min.js"></script>
+        <script src="js/g.pie-min.js"></script>
+
+        <script src="js/custom.js"></script>
 
         <div class="container">
 
@@ -76,15 +75,11 @@
 
                 <h2>Results<h2>
                         <input type="text" id="answer">
-                        <div id="chart_div" style="width: 900px; height: 500px;"></div>
+                        <div id="chart_div"></div>
 
 
                         </div>
-                        <div class="graphs">
-                            <h2> Visuals</h2>
-                            <p id="graphs">
-                            </p>
-                        </div>
+        </div>
 
 
                         <script>
@@ -97,7 +92,7 @@
                                 var b = $("#input2").val();
                                 var i, ans = 0;
                                 var array = [];
-                                var graphs = document.getElementById("graphs");
+                               
 
 
                                 for (i = 0; i < a.length; i++) {
@@ -637,10 +632,12 @@
                             }
 
                             function drawPie(a) {
-                                var div = document.getElementById('graphs');
-                                var r = Raphael(10, 50, 640, 480);
-                                r.piechart(320, 240, 100, [55, 20, 13, 32, 5, 1, 2]);
-                                div.innerHTML = div.innerHTML + r;
+                                var paper = Raphael('chart_div', 400, 0, 500, 500);
+
+                                var c = paper.circle(40, 20, 100);
+
+
+
                             }
 
                             function drawBar(a) {
