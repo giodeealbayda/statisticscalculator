@@ -41,7 +41,9 @@
 
 
 			<h3>Percentiles</h3>
-			<input type="radio" class="radio_button" name="option" value="Percentile">Percentile/Percentile Rank</input><br>
+			<input type="radio" class="radio_button" name="option" value="Percentile">Percentile/Percentile Rank</input>
+                            <input id="input2" class="inputbox" type="text"/> 
+                        <br>
 			<input type="radio" class="radio_button" name="option" value="Quartile">Quartile</input><br>
 			<input type="radio" class="radio_button" name="option" value="Decile">Decile</input>
 
@@ -76,6 +78,7 @@ function calculate_function(){
 	var input = $("#input").val();
 	var option = $("input[name='option']:checked").val();
 	var a = input.split(",");
+        var b = $("#input2").val();
 	var i, ans = 0;
 	var array = [];
 
@@ -98,7 +101,7 @@ function calculate_function(){
 		case 'COV' : ans = getCOV(a); $("#answer").val(ans); break;
 		case 'Skewness' : ans = getSkewness(a); $("#answer").val(ans); break;
 		case 'Kurtosis' : ans = getKurtosis(a); $("#answer").val(ans); break;
-		case 'Percentile' : ans = getPercentile(a); $("#answer").val(ans); break;
+		case 'Percentile' : ans = getPercentile(a, b); $("#answer").val(ans); break;
 
 
 	}
@@ -349,15 +352,46 @@ function getKurtosis(a){
 }
 
 
-function getPercentile(a){
+function getPercentile(a, b){
 
 	var ans = 0, temp = 0; 
 	var i, j;
 	var array = [];
+        var below = 0;
+        var samescore = 0;
 
 	
-
-	return ans;
+                //sort
+        for(i = 0; i<a.length;i++){
+            for (j=0; j<(a.length-i); j++){
+                if(a[j]>a[j+1]){
+                    temp = a[j];
+                    a[j] = a[j+1];
+                    a[j+1] = temp;
+                }
+            }
+        }
+        
+        for(i =0 ;i<a.length;i++){
+            if(a[i]<b){ // lower than value
+                below++;
+            }
+        }
+        
+        for(i =0;i<a.length;i++){
+            if(a[i]==b){
+                samescore++;
+            }
+        }
+        
+        ans = (below + (0.5*samescore)) / a.length;
+        //ans = below;
+        return ans;
+        
+        
+        
+       
+	
 
 }
 
