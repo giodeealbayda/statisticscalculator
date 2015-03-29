@@ -28,6 +28,17 @@
 
         <script src="js/custom.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+
+        <script src="https://www.exratione.com/assets/raphael.1.5.2.min.js"
+        type="text/javascript" charset="utf-8"></script>
+        <script src="https://www.exratione.com/assets/g.raphael.0.4.1.min.js"
+        type="text/javascript" charset="utf-8"></script>
+        <script src="https://www.exratione.com/assets/g.line.0.4.2.altered.js"
+        type="text/javascript" charset="utf-8"></script>
+
+
+
         <div class="container">
 
             <div class="box">
@@ -169,7 +180,8 @@
                         // idk;
                         break;
                     case 'Boxplot' :
-                        ans = drawBoxPlot(a);
+                        ans = drawBoxplot(a);
+                        $("#answer").val(ans);
                         // idk;
                         break;
                     case 'Scatterplot':
@@ -190,7 +202,7 @@
                         break;
                     case 'Line':
                         ans = drawLine(a);
-                        //idk;
+                        $("#answer").val(ans);
                         break;
                 }
 
@@ -623,12 +635,29 @@
 
                     k++;
                 }
-
-                System.out.println(k);
             }
 
 
             function drawBoxplot(a) {
+                var i;
+                var min = a[0];
+                var max = a[0];
+                var ans;
+
+                for (i = 1; i < a.length; i++) {
+                    if (a[i] < min) {
+                        min = a[i];
+                    }
+                }
+
+                for (i = 1; i < a.length; i++) {
+                    if (a[i] > max) {
+                        max = a[i];
+                    }
+                }
+                ans = min + " || " + max
+                
+                return ans;
 
             }
 
@@ -687,6 +716,33 @@
 
             function drawLine(a) {
 
+                /*
+                 var r = Raphael("chart_div");
+                 var chart = r.g.linechart(
+                 10, 10, // top left anchor
+                 490, 180, // bottom right anchor
+                 [
+                 [1, 2, 3, 4, 5, 6, 7], // red line x-values
+                 //                           [3.5, 4.5, 5.5, 6.5, 7, 8]    // blue line x-values
+                 ],
+                 [
+                 [1, 2, 3, 0, 7, 8, 4], // red line y-values
+                 //                           [10, 20, 30, 25, 15, 28]      // blue line y-values
+                 ],
+                 {
+                 nostroke: false, // lines between points are drawn
+                 axis: "0 0 1 1", // draw axes on the left and bottom
+                 symbol: "disc", // use a filled circle as the point symbol
+                 smooth: true, // curve the lines to smooth turns on the chart
+                 dash: "-", // draw the lines dashed
+                 colors: [
+                 "#995555", // the first line is red
+                 "#555599"        // the second line is blue
+                 ]
+                 });
+                 
+                 return a[0];
+                 */
             }
 
 
