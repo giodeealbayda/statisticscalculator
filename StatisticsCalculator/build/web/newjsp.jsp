@@ -814,12 +814,93 @@
             }
 
             function drawBar(a) {
-                var paper = Raphael('chart_div');
-                r.barchart(0, 0, 620, 260, [76, 70, 67, 71, 69], {})
+                var i = 0;
+                var k = 0;
+                var l = 0;
+                var j = 0;
+                var array = [];
+                var frequency = [];
+                var data = [];
+                var temp;
+                var count = 0;
+
+                //sort
+                for (i = 0; i < (a.length - 1); i++) {
+                    for (j = 0; j < (a.length - i); j++) {
+                        if (a[j] > a[j + 1]) { // sort
+                            temp = a[j];
+                            a[j] = a[j + 1];
+                            a[j + 1] = temp;
+                        }
+                    }
+                }
+
+                //count frequency
+                for (var i = 0; i < a.length; i++) {
+                    if (a[i] !== temp) {
+                        array.push(a[i]);
+                        frequency.push(1);
+                    } else {
+                        frequency[frequency.length - 1]++;
+                    }
+                    temp = a[i];
+                }
+
+                var ans = "";
+                for (i = 0; i < array.length; i++) {
+                    ans += array[i] + ": " + frequency[i] + " || ";
+
+                }
+
+                
+                return ans;
+                //x axis = array[]
+                //y axis = frequency
             }
 
             function drawLine(a) {
+                var i = 0;
+                var k = 0;
+                var l = 0;
+                var j = 0;
+                var array = [];
+                var frequency = [];
+                var data = [];
+                var temp;
+                var count = 0;
 
+                //sort
+                for (i = 0; i < (a.length - 1); i++) {
+                    for (j = 0; j < (a.length - i); j++) {
+                        if (a[j] > a[j + 1]) { // sort
+                            temp = a[j];
+                            a[j] = a[j + 1];
+                            a[j + 1] = temp;
+                        }
+                    }
+                }
+
+                //count frequency
+                for (var i = 0; i < a.length; i++) {
+                    if (a[i] !== temp) {
+                        array.push(a[i]);
+                        frequency.push(1);
+                    } else {
+                        frequency[frequency.length - 1]++;
+                    }
+                    temp = a[i];
+                }
+
+                var ans = "";
+                for (i = 0; i < array.length; i++) {
+                    ans += array[i] + ": " + frequency[i] + " || ";
+
+                }
+
+                
+                return ans;
+                //x axis = array[]
+                //y axis = frequency
             }
 
 
