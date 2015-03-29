@@ -756,7 +756,24 @@
 
             function drawBar(a) {
                 var paper = Raphael('chart_div');
-                r.barchart(0, 0, 620, 260, [76, 70, 67, 71, 69], {})
+                function drawBar (a){
+
+                var j = 0;
+                var k = 0;
+                var data = [];
+
+                for (var j = 0; j <a.length; j++){
+                    var count = 0;
+                    var temp = a[j];
+
+                    for (var k=0; i < a.length; k++){
+                        if (a[k] == temp){
+                        count++;
+                    }
+
+                    data[j] = count; 
+
+                    }
             }
 
             function drawLine(a) {
