@@ -181,8 +181,8 @@
                         //idk;
                         break;
                     case 'Pie':
-                        drawPie(a);
-                        $("#graphs").val(r);
+                        ans = drawPie(a);
+                        $("#answer").val(ans);
                         break;
                     case 'Bar':
                         ans = drawBar(a);
@@ -646,26 +646,39 @@
                 var i = 0;
                 var k = 0;
                 var array = [];
+                var frequency = [];
+                var data = [];
                 var temp;
                 var count = 0;
 
                 for (i = 0; i < a.length; i++) {
                     temp = a[i];
-                    for (j = 0; j < a.length; j++) {
+                    for (j = i + 1; j < a.length; j++) {
                         if (temp === a[j]) {
                             count++;
-                            array[k]=a[j];
+                            array[k] = a[j];
+                            frequency[k] = count;
+
+                        } else {
+                            k++;
+                            break;
                         }
                     }
+                    count = 0;
+                }
+
+                for (i = 0; i < array.length; i++) {
+                    data [i] = ((array[i] * frequency[i]) / array.length) * 100;
                 }
 
                 paper.piechart(
                         100, // pie center x coordinate
                         100, // pie center y coordinate
                         90, // pie radius
-                        [18.373, 18.686, 2.867, 23.991, 9.592, 9.213] // values
+                        data // values
                         );
-            <%System.out.println("AYOKO NA");%>
+
+                return k;
             }
 
             function drawBar(a) {
