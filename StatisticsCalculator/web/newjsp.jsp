@@ -643,6 +643,21 @@
             function drawPie(a) {
 
                 var paper = Raphael('chart_div');
+                var i = 0;
+                var k = 0;
+                var array = [];
+                var temp;
+                var count = 0;
+
+                for (i = 0; i < a.length; i++) {
+                    temp = a[i];
+                    for (j = 0; j < a.length; j++) {
+                        if (temp === a[j]) {
+                            count++;
+                            array[k]=a[j];
+                        }
+                    }
+                }
 
                 paper.piechart(
                         100, // pie center x coordinate
@@ -650,7 +665,7 @@
                         90, // pie radius
                         [18.373, 18.686, 2.867, 23.991, 9.592, 9.213] // values
                         );
-                <%System.out.println("AYOKO NA");%>
+            <%System.out.println("AYOKO NA");%>
             }
 
             function drawBar(a) {

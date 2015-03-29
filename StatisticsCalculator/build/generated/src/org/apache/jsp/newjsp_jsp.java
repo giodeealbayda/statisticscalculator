@@ -682,6 +682,21 @@ public final class newjsp_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            function drawPie(a) {\n");
       out.write("\n");
       out.write("                var paper = Raphael('chart_div');\n");
+      out.write("                var i = 0;\n");
+      out.write("                var k = 0;\n");
+      out.write("                var array = [];\n");
+      out.write("                var temp;\n");
+      out.write("                var count = 0;\n");
+      out.write("\n");
+      out.write("                for (i = 0; i < a.length; i++) {\n");
+      out.write("                    temp = a[i];\n");
+      out.write("                    for (j = 0; j < a.length; j++) {\n");
+      out.write("                        if (temp === a[j]) {\n");
+      out.write("                            count++;\n");
+      out.write("                            array[k]=a[j];\n");
+      out.write("                        }\n");
+      out.write("                    }\n");
+      out.write("                }\n");
       out.write("\n");
       out.write("                paper.piechart(\n");
       out.write("                        100, // pie center x coordinate\n");
@@ -689,8 +704,10 @@ public final class newjsp_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        90, // pie radius\n");
       out.write("                        [18.373, 18.686, 2.867, 23.991, 9.592, 9.213] // values\n");
       out.write("                        );\n");
-      out.write("                ");
-System.out.println("AYOKO NA");
+      out.write("            ");
+System.out.println("
+      out.write("a[k]");
+AYOKO NA");
       out.write("\n");
       out.write("            }\n");
       out.write("\n");
