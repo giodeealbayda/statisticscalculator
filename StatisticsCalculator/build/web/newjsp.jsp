@@ -30,13 +30,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
 
-        <script src="https://www.exratione.com/assets/raphael.1.5.2.min.js"
-        type="text/javascript" charset="utf-8"></script>
-        <script src="https://www.exratione.com/assets/g.raphael.0.4.1.min.js"
-        type="text/javascript" charset="utf-8"></script>
-        <script src="https://www.exratione.com/assets/g.line.0.4.2.altered.js"
-        type="text/javascript" charset="utf-8"></script>
-
 
 
         <div class="container">
@@ -609,7 +602,6 @@
                         " || D8: " + ans8 +
                         " || D9: " + ans9 +
                         " || D10: " + ans10;
-                // hindi ko alam pano ididisplay :(
                 return ans;
             }
 
@@ -656,7 +648,7 @@
                     }
                 }
                 ans = min + " || " + max
-                
+
                 return ans;
 
             }
@@ -682,6 +674,18 @@
                 var temp;
                 var count = 0;
 
+                //sort
+                for (i = 0; i < (a.length - 1); i++) {
+                    for (j = 0; j < (a.length - i); j++) {
+                        if (a[j] > a[j + 1]) { // sort
+                            temp = a[j];
+                            a[j] = a[j + 1];
+                            a[j + 1] = temp;
+                        }
+                    }
+                }
+
+                //count frequency
                 for (var i = 0; i < a.length; i++) {
                     if (a[i] !== temp) {
                         array.push(a[i]);
