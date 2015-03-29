@@ -756,6 +756,7 @@
 
                 }
 
+                // gawin lang table yung array and frequency
                 return ans;
 
             }
