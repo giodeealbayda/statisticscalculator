@@ -645,30 +645,29 @@
                 var paper = Raphael('chart_div');
                 var i = 0;
                 var k = 0;
+                var l = 0;
+                var j = 0;
                 var array = [];
                 var frequency = [];
                 var data = [];
                 var temp;
                 var count = 0;
 
-                for (i = 0; i < a.length; i++) {
-                    temp = a[i];
-                    for (j = i + 1; j < a.length; j++) {
-                        if (temp === a[j]) {
-                            count++;
-                            array[k] = a[j];
-                            frequency[k] = count;
-
-                        } else {
-                            k++;
-                            break;
-                        }
+                for (var i = 0; i < a.length; i++) {
+                    if (a[i] !== temp) {
+                        array.push(a[i]);
+                        frequency.push(1);
+                    } else {
+                        frequency[frequency.length - 1]++;
                     }
-                    count = 0;
+                    temp = a[i];
                 }
 
+                var ans = "";
                 for (i = 0; i < array.length; i++) {
-                    data [i] = ((array[i] * frequency[i]) / array.length) * 100;
+                    data [i] = ((frequency[i]) / a.length) * 100;
+                    ans += data[i] + " || ";
+
                 }
 
                 paper.piechart(
@@ -678,7 +677,7 @@
                         data // values
                         );
 
-                return k;
+                return ans;
             }
 
             function drawBar(a) {
@@ -687,10 +686,6 @@
             }
 
             function drawLine(a) {
-
-            }
-
-            function draw1(a) {
 
             }
 
