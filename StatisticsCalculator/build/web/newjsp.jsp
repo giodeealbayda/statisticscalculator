@@ -1,3 +1,11 @@
+<%-- 
+    Document   : newjsp
+    Created on : 03 29, 15, 9:50:53 AM
+    Author     : Giodee
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 
     <head>
@@ -174,6 +182,7 @@
                         break;
                     case 'Pie':
                         drawPie(a);
+                        $("#graphs").val(r);
                         break;
                     case 'Bar':
                         ans = drawBar(a);
@@ -630,18 +639,22 @@
             function drawFDT(a) {
 
             }
-            var paper = Raphael('chart_div');
+
             function drawPie(a) {
+
+                var paper = Raphael('chart_div');
+
                 paper.piechart(
-                        750, // pie center x coordinate
+                        100, // pie center x coordinate
                         100, // pie center y coordinate
                         90, // pie radius
                         [18.373, 18.686, 2.867, 23.991, 9.592, 9.213] // values
                         );
+                <%System.out.println("AYOKO NA");%>
             }
 
             function drawBar(a) {
-                var paper = Raphael('chart_div')
+                var paper = Raphael('chart_div');
                 r.barchart(0, 0, 620, 260, [76, 70, 67, 71, 69], {})
             }
 

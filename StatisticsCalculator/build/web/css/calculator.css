@@ -23,12 +23,6 @@
 
 #chart_div{
     
-    position: absolute;
-    margin-top: 50px;
-    width: 600px;
-    height: 600px;
-    padding: 10px;
-    border: 5px solid gray;
 }
 
 .inputbox{
