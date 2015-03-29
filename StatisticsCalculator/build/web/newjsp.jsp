@@ -175,7 +175,6 @@
                     case 'Boxplot' :
                         ans = drawBoxplot(a);
                         $("#answer").val(ans);
-                        // idk;
                         break;
                     case 'Scatterplot':
                         ans = drawScatterplot(a);
@@ -481,27 +480,20 @@
                 var first = a.length * 25 / 100;
                 if ((first + .5) - first >= .5) {
                     first = parseInt(first) + 1;
-                } else {
-                    first = first;
                 }
                 ans1 = a[first - 1];
                 var second = a.length * 50 / 100;
                 if ((second + .5) - second >= .5) {
                     second = parseInt(second) + 1;
-                } else {
-                    second = second;
                 }
                 ans2 = a[second - 1];
 
                 var third = a.length * 75 / 100;
                 if ((third + .5) - third >= .5) {
                     third = parseInt(third) + 1;
-                } else {
-                    third = third;
                 }
                 ans3 = a[third - 1];
-                ans = "Q1: " + ans1 + " || Q2: " + ans2 + " || Q3: " + ans3;
-                // hindi ko alam pano ididisplay :(
+                ans = ans1 + "," + ans2 + "," + ans3;
                 return ans;
             }
 
@@ -609,25 +601,40 @@
             var barsVisualization;
 
             function drawHistogram(a) {
-                var i = 0;
-                var frequencycount = [];
-                var temp = 0;
-                var data = [];
-                var count = 0;
+               var i = 0;
                 var k = 0;
+                var l = 0;
+                var j = 0;
+                var array = [];
+                var frequency = [];
+                var data = [];
+                var temp;
+                var count = 0;
 
-                for (i = 0; i < a.length; i++) {
-                    temp = a[i];
-                    for (j = 0; j < a.length; j++) {
-                        if (temp === a[j]) {
-                            count++;
-                            frequencycount[k] = count;
-                            data[k] = temp;
+                //sort
+                for (i = 0; i < (a.length - 1); i++) {
+                    for (j = 0; j < (a.length - i); j++) {
+                        if (a[j] > a[j + 1]) { // sort
+                            temp = a[j];
+                            a[j] = a[j + 1];
+                            a[j + 1] = temp;
                         }
                     }
-
-                    k++;
                 }
+
+                //count frequency
+                for (var i = 0; i < a.length; i++) {
+                    if (a[i] !== temp) {
+                        array.push(a[i]);
+                        frequency.push(1);
+                    } else {
+                        frequency[frequency.length - 1]++;
+                    }
+                    temp = a[i];
+                }
+
+                // x axis = array[]
+                // y axis = frequency[]
             }
 
 
@@ -650,11 +657,62 @@
                 }
                 ans = min + " || " + max
 
-                return ans;
+
+                // get quartile
+                var q = getQuartile(a);
+                var quartile = q.split(",");
+
+                for (i = 0; i < quartile.length; i++) {
+                    ans += quartile[i] + ",";
+                }
 
             }
 
             function drawScatterplot(a) {
+
+                var i = 0;
+                var k = 0;
+                var l = 0;
+                var j = 0;
+                var array = [];
+                var frequency = [];
+                var data = [];
+                var temp;
+                var count = 0;
+
+                //sort
+                for (i = 0; i < (a.length - 1); i++) {
+                    for (j = 0; j < (a.length - i); j++) {
+                        if (a[j] > a[j + 1]) { // sort
+                            temp = a[j];
+                            a[j] = a[j + 1];
+                            a[j + 1] = temp;
+                        }
+                    }
+                }
+
+                //count frequency
+                for (var i = 0; i < a.length; i++) {
+                    if (a[i] !== temp) {
+                        array.push(a[i]);
+                        frequency.push(1);
+                    } else {
+                        frequency[frequency.length - 1]++;
+                    }
+                    temp = a[i];
+                }
+
+                var ans = "";
+                for (i = 0; i < array.length; i++) {
+                    ans += array[i] + ": " + frequency[i] + " || ";
+
+                }
+                
+                // x axis = array[]
+                // y axis = frequency[]
+                // if maginput ulit then pinili mag-scatterplot, magpapatong patong lang yung dots
+
+                return ans;
 
             }
 
@@ -761,33 +819,6 @@
 
             function drawLine(a) {
 
-                /*
-                 var r = Raphael("chart_div");
-                 var chart = r.g.linechart(
-                 10, 10, // top left anchor
-                 490, 180, // bottom right anchor
-                 [
-                 [1, 2, 3, 4, 5, 6, 7], // red line x-values
-                 //                           [3.5, 4.5, 5.5, 6.5, 7, 8]    // blue line x-values
-                 ],
-                 [
-                 [1, 2, 3, 0, 7, 8, 4], // red line y-values
-                 //                           [10, 20, 30, 25, 15, 28]      // blue line y-values
-                 ],
-                 {
-                 nostroke: false, // lines between points are drawn
-                 axis: "0 0 1 1", // draw axes on the left and bottom
-                 symbol: "disc", // use a filled circle as the point symbol
-                 smooth: true, // curve the lines to smooth turns on the chart
-                 dash: "-", // draw the lines dashed
-                 colors: [
-                 "#995555", // the first line is red
-                 "#555599"        // the second line is blue
-                 ]
-                 });
-                 
-                 return a[0];
-                 */
             }
 
 
