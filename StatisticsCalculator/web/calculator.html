@@ -165,31 +165,40 @@
                         $("#answer").val(ans);
                         break;
                     case 'Histogram' :
-                        drawHistogram(a);
+                        $("#chart_div").html("");
+                        ans = drawHistogram(a);
+                        $("#answer").val(ans);
                         // idk;
                         break;
                     case 'Boxplot' :
+                        $("#chart_div").html("");
                         ans = drawBoxplot(a);
                         $("#answer").val(ans);
                         break;
                     case 'Scatterplot':
+                        $("#chart_div").html("");
                         ans = drawScatterplot(a);
+                         $("#answer").val(ans);
                         //idk;
                         break;
                     case 'FDT':
+                        $("#chart_div").html("");
                         ans = drawFDT(a);
                         $("#answer").val(ans);
                         //idk;
                         break;
                     case 'Pie':
+                        $("#chart_div").html("");
                         ans = drawPie(a);
                         $("#answer").val(ans);
                         break;
                     case 'Bar':
+                        $("#chart_div").html("");
                         ans = drawBar(a);
-                        //idk;
+                        $("#answer").val(ans);
                         break;
                     case 'Line':
+                        $("#chart_div").html("");
                         ans = drawLine(a);
                         $("#answer").val(ans);
                         break;
@@ -542,6 +551,8 @@
             var barsVisualization;
 
             function drawHistogram(a) {
+
+                var paper = Raphael('chart_div');
                 var i = 0;
                 var k = 0;
                 var l = 0;
@@ -576,6 +587,19 @@
 
                 // x axis = array[]
                 // y axis = frequency[]
+
+                var ans = "";
+                for (i = 0; i < array.length; i++) {
+                    data [i] = ((frequency[i]) / a.length) * 100;
+                    ans += data[i] + " || ";
+
+                }
+
+                paper.barchart(100, 100, 220, 220, data, 0, {type: "sharp"});
+
+                return ans;
+
+
             }
 
 
@@ -611,6 +635,7 @@
 
             function drawScatterplot(a) {
 
+                var paper = Raphael('chart_div');
                 var i = 0;
                 var k = 0;
                 var l = 0;
@@ -652,6 +677,8 @@
                 // x axis = array[]
                 // y axis = frequency[]
                 // if maginput ulit then pinili mag-scatterplot, magpapatong patong lang yung dots
+
+                 paper.linechart(100, 100, 220, 220, array, frequency, {nostroke: true, axis: "0 0 1 1", symbol: 'circle' ,smooth: true});
 
                 return ans;
 
@@ -698,17 +725,16 @@
 
                 }
 
-                var table = document.createElement('table');
-                table.setAttribute('border', '1');
-                table.setAttribute('width', '100%')
-                var row = table.insertRow(array.length);
-                for (j = 1; j <= 10; j++) {
-                    var text = document.createTextNode(String.fromCharCode(j + 64));
-                    var cell = row.insertCell(j - 1);
-                    cell.setAttribute('align', 'center')
-                    cell.appendChild(text);
-                }
-                document.getElementById("outputDiv").appendChild(table);
+                var HTML = "</br></br><table border=1 width=100%><tr><td>Number</td><td>Frequency</td></tr>";
+                    
+
+                    for(j=0;j<array.length;j++)
+                    {
+                        HTML += "<tr><td>"+array[j]+"</td><td>"+frequency[j]+"</td></tr>";
+                    }
+                    HTML += "</table>";
+
+                document.getElementById("chart_div").innerHTML = HTML;
 
                 // gawin lang table yung array and frequency
                 return ans;
