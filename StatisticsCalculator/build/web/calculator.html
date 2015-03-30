@@ -498,54 +498,34 @@
 				
 				index = Math.ceil(a.length * 10 / 100);               
                 ans1 = a[index - 1];
-                index = Math.ceil(a.length * 20 / 100);
-
+                
+				index = Math.ceil(a.length * 20 / 100);
                 ans2 = a[index - 1];
+
                 index = Math.ceil(a.length * 30 / 100);
-
                 ans3 = a[index - 1];
+
                 index = Math.ceil(a.length * 40 / 100);
-
                 ans4 = a[index - 1];
-                index = Math.ceil(a.length * 50 / 100);
 
+                index = Math.ceil(a.length * 50 / 100);
                 ans5 = a[index - 1];
-                index = a.length * 60 / 100;
-                if ((index + .5) - index >= .5) {
-                    index = parseInt(index) + 1;
-                } else {
-                    index = index;
-                }
+				
+                index = Math.ceil(a.length * 60 / 100);
                 ans6 = a[index - 1];
-                index = a.length * 70 / 100;
-                if ((index + .5) - index >= .5) {
-                    index = parseInt(index) + 1;
-                } else {
-                    index = index;
-                }
-                ans7 = a[index - 1];
-                index = a.length * 80 / 100;
-                if ((index + .5) - index >= .5) {
-                    index = parseInt(index) + 1;
-                } else {
-                    index = index;
-                }
+				
+                index = Math.ceil(a.length * 70 / 100);
+				ans7 = a[index - 1];
+				
+                index = Math.ceil(a.length * 80 / 100);
                 ans8 = a[index - 1];
-                index = a.length * 90 / 100;
-                if ((index + .5) - index >= .5) {
-                    index = parseInt(index) + 1;
-                } else {
-                    index = index;
-                }
+				
+                index = Math.ceil(a.length * 90 / 100);
                 ans9 = a[index - 1];
-                index = a.length * 100 / 100;
-                if ((index + .5) - index >= .5) {
-                    index = parseInt(index) + 1;
-                } else {
-                    index = index;
-                }
+				
+                index = Math.ceil(a.length * 100 / 100);
                 ans10 = a[index - 1];
-                ans = "D1: " + ans1 +
+                ans = 	"D1: " + ans1 +
                         " || D2: " + ans2 +
                         " || D3: " + ans3 +
                         " || D4: " + ans4 +
